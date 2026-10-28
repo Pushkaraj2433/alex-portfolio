@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070812">
+<meta name="description" content="ALEX Digital Services — website development, content writing, translation and proofreading.">
+<title>ALEX | Digital Innovation</title>
+
+<style>
+:root {
+  --bg: #070812;
+  --panel: #101225;
+  --text: #f7f7ff;
+  --muted: #a6abc4;
+  --blue: #38bdf8;
+  --purple: #9b5cff;
+  --line: rgba(255,255,255,.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a { color:inherit; text-decoration:none; }
+button,a { -webkit-tap-highlight-color:transparent; }
+.wrap { width:min(1120px,90%); margin:auto; }
+section { padding:100px 0; position:relative; }
+::selection { background:var(--purple); color:white; }
+
+/* Animated background */
+.ambient {
+  position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background:
+    radial-gradient(ellipse at 15% 15%,#35207835,transparent 42%),
+    radial-gradient(ellipse at 85% 45%,#0078ad24,transparent 42%),
+    #070812;
+}
+.orb {
+  position:fixed; z-index:-1; pointer-events:none;
+  width:280px; height:280px; border-radius:50%;
+  filter:blur(90px); opacity:.16;
+  background:#7854ff; top:20%; left:-160px;
+  animation:drift 12s ease-in-out infinite alternate;
+}
+.orb.two {
+  background:#00c7ff; left:auto; right:-170px; top:60%;
+  animation-delay:-5s;
+}
+@keyframes drift {
+  from { transform:translate(0,0) scale(.9); }
+  to { transform:translate(90px,-60px) scale(1.2); }
+}
+
+/* Navigation */
+header {
+  position:sticky; top:0; z-index:20;
+  background:#080914c9; backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.logo {
+  font-size:1.65rem; font-weight:950; letter-spacing:.2em;
+  background:linear-gradient(100deg,var(--blue),var(--purple));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.navlinks { display:flex; align-items:center; gap:28px; color:var(--muted); font-size:.92rem; }
+.navlinks a { transition:color .25s; }
+.navlinks a:hover { color:white; }
+.nav-cta { border:1px solid #9b5cff88; padding:8px 16px; border-radius:30px; }
+
+/* Hero */
+.hero {
+  min-height:calc(100vh - 76px);
+  display:grid; grid-template-columns:1.15fr .85fr;
+  align-items:center; gap:60px; padding-top:80px; padding-bottom:80px;
+}
+.pill {
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid var(--line); border-radius:30px;
+  padding:7px 13px; color:#d6d9ee; font-size:.8rem;
+  background:#ffffff06;
+}
+.dot {
+  width:8px; height:8px; border-radius:50%; background:#42edbd;
+  box-shadow:0 0 14px #42edbd;
+}
+h1 {
+  font-size:clamp(3rem,7vw,5.8rem);
+  line-height:1.04; letter-spacing:-.065em;
+  margin:25px 0;
+}
+.gradient {
+  background:linear-gradient(100deg,#47d8ff 5%,#9b79ff 55%,#f0a7ff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  background-size:200% auto; animation:shine 7s linear infinite;
+}
+@keyframes shine { to { background-position:200% center; } }
+.hero-text { color:var(--muted); max-width:570px; font-size:1.08rem; }
+.actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:30px; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  border:1px solid var(--line); padding:13px 21px; border-radius:12px;
+  font-weight:750; transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.btn:hover { transform:translateY(-4px); border-color:#a38aff; box-shadow:0 10px 35px #7951ff24; }
+.btn.primary {
+  background:linear-gradient(110deg,#268ddf,#8050ed);
+  border-color:transparent; box-shadow:0 8px 30px #6b50ef35;
+}
+.btn.primary:hover { box-shadow:0 12px 40px #6b50ef60; }
+
+/* Animated identity card */
+.visual { position:relative; perspective:1000px; }
+.profile-card {
+  position:relative; padding:38px; border:1px solid #ffffff1c;
+  border-radius:26px; overflow:hidden;
+  background:linear-gradient(145deg,#15182dce,#0b0d19ed);
+  box-shadow:0 25px 100px #0007;
+  animation:float 6s ease-in-out infinite;
+}
+.profile-card::before {
+  content:""; position:absolute; inset:-2px; z-index:-1;
+  background:conic-gradient(from 0deg,transparent,#5d8aff,#ad5cff,transparent 65%);
+  animation:rotate 8s linear infinite;
+}
+.profile-card::after {
+  content:""; position:absolute; inset:1px; z-index:-1;
+  border-radius:25px; background:#0e1020;
+}
+@keyframes rotate { to { transform:rotate(360deg); } }
+@keyframes float { 0%,100% { transform:translateY(0) rotateX(0); } 50% { transform:translateY(-12px) rotateX(2deg); } }
+.card-top { display:flex; align-items:center; justify-content:space-between; color:var(--muted); font-size:.8rem; }
+.card-symbol {
+  display:grid; place-items:center; width:105px; height:105px;
+  border:1px solid #ffffff25; border-radius:25px; margin:34px 0 24px;
+  font-size:2.7rem; font-weight:950; letter-spacing:.08em;
+  background:linear-gradient(135deg,#39c9ff22,#9b5cff35);
+  box-shadow:inset 0 0 35px #8662ff19,0 0 35px #7752ff12;
+}
+.profile-card h2 { font-size:2rem; letter-spacing:.08em; }
+.profile-card p { color:var(--muted); margin-top:10px; }
+.skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+.skill {
+  font-size:.76rem; padding:6px 10px; border:1px solid var(--line);
+  border-radius:8px; color:#d9ddf2; background:#ffffff05;
+}
+.card-bottom { display:flex; align-items:center; gap:10px; margin-top:30px; color:#c7cce1; font-size:.85rem; }
+
+/* Sections */
+.section-label { color:var(--blue); text-transform:uppercase; letter-spacing:.18em; font-size:.76rem; font-weight:850; }
+.section-title { font-size:clamp(2.1rem,4.5vw,3.3rem); line-height:1.15; margin-top:12px; letter-spacing:-.045em; }
+.section-desc { color:var(--muted); max-width:650px; margin-top:13px; }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:42px; }
+.service {
+  padding:28px; min-height:245px; border-radius:20px;
+  border:1px solid var(--line); background:linear-gradient(145deg,#14162a9c,#0d0f1c9c);
+  transition:transform .3s,border-color .3s,background .3s;
+}
+.service:hover { transform:translateY(-8px); border-color:#8c72ff9c; background:#17182b; }
+.service-icon {
+  width:53px; height:53px; display:grid; place-items:center;
+  border-radius:15px; font-size:1.45rem; margin-bottom:23px;
+  background:linear-gradient(135deg,#38bdf829,#9b5cff35);
+  border:1px solid #ffffff13;
+}
+.service h3 { font-size:1.15rem; margin-bottom:10px; }
+.service p { color:var(--muted); font-size:.94rem; }
+.service-number { color:#656b89; font-size:.78rem; letter-spacing:.12em; margin-bottom:15px; }
+
+.about-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:65px; align-items:center; margin-top:40px; }
+.about-graphic {
+  min-height:300px; display:grid; place-items:center; border:1px solid var(--line);
+  border-radius:25px; background:radial-gradient(circle,#42307844,transparent 65%),#101122;
+}
+.about-graphic span {
+  font-size:4.5rem; font-weight:950; letter-spacing:.15em;
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.about-copy { color:var(--muted); }
+.about-copy p + p { margin-top:16px; }
+.values { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:25px; }
+.value { padding:14px; border-radius:12px; background:#ffffff06; border:1px solid var(--line); color:#dce0f4; font-size:.88rem; }
+
+/* Contact */
+.contact-panel {
+  padding:55px 35px; text-align:center; border:1px solid #ffffff20;
+  border-radius:28px; background:
+  radial-gradient(ellipse at 50% 0%,#7750ff28,transparent 65%),#101121;
+}
+.contact-panel .section-desc { margin:14px auto 0; }
+.contact-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:28px; }
+.contact-note { color:var(--muted); font-size:.8rem; margin-top:23px; }
+
+/* Scroll reveal */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+footer { border-top:1px solid var(--line); padding:27px 0; color:var(--muted); font-size:.85rem; }
+.footer-row { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+footer strong { color:#e6e8f7; }
+
+/* Accessibility */
+:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; }
+  .reveal { opacity:1; transform:none; }
+}
+@media(max-width:800px) {
+  .hero { grid-template-columns:1fr; gap:45px; min-height:auto; }
+  .visual { width:min(100%,520px); }
+  .services-grid { grid-template-columns:1fr; }
+  .service { min-height:auto; }
+  .about-grid { grid-template-columns:1fr; gap:25px; }
+  .about-graphic { min-height:210px; }
+}
+@media(max-width:520px) {
+  section { padding:72px 0; }
+  nav { min-height:68px; flex-wrap:wrap; padding:12px 0; }
+  .navlinks { width:100%; justify-content:space-between; gap:10px; font-size:.82rem; }
+  .nav-cta { padding:5px 10px; }
+  h1 { font-size:clamp(2.8rem,13vw,4.3rem); }
+  .profile-card { padding:25px; }
+  .contact-panel { padding:40px 20px; }
+  .values { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="ambient"></div>
+<div class="orb"></div>
+<div class="orb two"></div>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#home" aria-label="ALEX home">ALEX<span style="color:white">.</span></a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Contact ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" id="home">
+    <div class="hero-copy">
+      <div class="pill"><span class="dot"></span> Student entrepreneur · Digital services</div>
+      <h1>Ideas into<br><span class="gradient">digital reality.</span></h1>
+      <p class="hero-text">
+        I help individuals and small businesses build a stronger online presence
+        through modern websites, compelling content and thoughtful language services.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Start a project <span>↗</span></a>
+        <a class="btn" href="#services">Explore services ↓</a>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="profile-card">
+        <div class="card-top"><span>PERSONAL PORTFOLIO</span><span>✦ 01 / 03</span></div>
+        <div class="card-symbol">AX</div>
+        <h2>ALEX DIGITAL</h2>
+        <p>Creative thinking. Practical digital solutions.</p>
+        <div class="skills">
+          <span class="skill">Websites</span>
+          <span class="skill">AI-assisted work</span>
+          <span class="skill">Writing</span>
+          <span class="skill">Translation</span>
+        </div>
+        <div class="card-bottom"><span class="dot"></span> Learning, building, improving.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="services">
+    <div class="reveal">
+      <div class="section-label">What I offer</div>
+      <h2 class="section-title">Digital services, <span class="gradient">made simple.</span></h2>
+      <p class="section-desc">Practical support for people and businesses who want to present their work clearly and professionally online.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service reveal">
+        <div class="service-number">01 / DEVELOPMENT</div>
+        <div class="service-icon">⌘</div>
+        <h3>Website Development</h3>
+        <p>Responsive landing pages, personal portfolios and starter websites with a clean, modern design.</p>
+      </article>
+      <article class="service reveal">
+        <div class="service-number">02 / CONTENT</div>
+        <div class="service-icon">✎</div>
+        <h3>Content Writing</h3>
+        <p>Website copy, product descriptions and digital content tailored to your goals and audience.</p>
+      </article>
+      <article class="service reveal">
+        <div class="service-number">03 / LANGUAGE</div>
+        <div class="service-icon">文</div>
+        <h3>Translation & Proofreading</h3>
+        <p>Language review and translation for supported languages, with attention to clarity and meaning.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="about">
+    <div class="reveal">
+      <div class="section-label">Behind ALEX</div>
+      <h2 class="section-title">Curious by nature.<br><span class="gradient">Focused on progress.</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-graphic reveal"><span>ALEX</span></div>
+      <div class="about-copy reveal">
+        <p>I am a student and aspiring entrepreneur interested in technology, artificial intelligence and digital business.</p>
+        <p>I use modern tools to support creative work while continuously developing my technical and communication skills. My aim is to understand each project, communicate clearly and create useful digital solutions.</p>
+        <div class="values">
+          <div class="value">✦ Continuous learning</div>
+          <div class="value">✦ Clear communication</div>
+          <div class="value">✦ Thoughtful design</div>
+          <div class="value">✦ Practical solutions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact-panel reveal">
+      <div class="section-label">Let's connect</div>
+      <h2 class="section-title">Have an idea?<br><span class="gradient">Let's discuss it.</span></h2>
+      <p class="section-desc">Tell me about your project, the service you need, or the idea you'd like to bring online.</p>
+      <div class="contact-actions">
+        <a class="btn primary" href="mailto:joundalpushkaraj51@gmail.com?subject=Project%20Enquiry">
+          ✉ Email me
+        </a>
+        <a class="btn" href="https://wa.me/918788755399" target="_blank" rel="noopener noreferrer">
+          WhatsApp ↗
+        </a>
+      </div>
+      <p class="contact-note">Email: joundalpushkaraj51@gmail.com</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© <span id="year"></span> <strong>ALEX Digital Services</strong></span>
+    <span>Built with curiosity and care.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach(item => observer.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
+</script>
+</body>
+</html>
